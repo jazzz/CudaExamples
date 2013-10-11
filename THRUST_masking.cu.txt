@@ -1,0 +1,33 @@
+
+
+  #include <thrust/transform.h>
+  #include <thrust/functional.h>
+
+ 
+  int main() {
+  
+  int data[1024*800]    = {......};
+  thrust::device_vector<int>   X(1024*800);
+  thrust::device_vector<int> out(1024*800);
+  
+  // Host Vector
+  std::vector<int> stl_vector(D.size());
+  
+  //Populate stl_vector
+  ......
+  
+  thrust::copy(D.begin(), D.end(), stl_vector.begin());
+  
+  struct greaterThan67
+  {
+    __host__ __device__
+    bool operator()(int x)
+    {
+      return (x > 67) 1 : 0;
+    }
+  };
+
+ 
+  thrust::transform_if(D.begin(), D.end(), greaterThan67()); // in-place transformation
+  
+}
